@@ -17,7 +17,6 @@ export const fetchUserData: RequestHandler = async (req, res, next) => {
   }
 };
 
-
 export const updateUserData: RequestHandler = async (req, res, next) => {
   try {
     const userId = req.body.userId;
@@ -29,4 +28,3 @@ export const updateUserData: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
-
