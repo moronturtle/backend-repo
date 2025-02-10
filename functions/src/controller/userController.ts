@@ -1,10 +1,10 @@
 import { RequestHandler } from "express";
-import { getUserById, updateUser } from "../repository/userCollection";
+import { getAllUser, updateUser } from "../repository/userCollection";
 
 export const fetchUserData: RequestHandler = async (req, res, next) => {
   try {
-    const userId = req.body.userId;
-    const user = await getUserById(userId);
+    const user = await getAllUser();
+    console.log('user', user);
 
     if (!user) {
       res.status(404).json({ message: "User not found" });
