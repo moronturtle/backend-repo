@@ -9,10 +9,12 @@ export const getUserById = async (id: string): Promise<User | null> => {
 };
 
 export const getAllUser = async (): Promise<User[]> => {
-  const snapshot = await db.collection(USERS_COLLECTION).get();
-
-  return snapshot.docs.map((doc) => doc.data() as User);
+  return (await db.collection(USERS_COLLECTION).get()).docs.map((doc) => {
+    const { docId: storedDocId, ...userData } = doc.data() as User;
+    return { ...userData, docId: storedDocId ?? doc.id };
+  });
 };
+
 
 export const updateUser = async (
   id: string,

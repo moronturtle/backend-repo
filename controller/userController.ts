@@ -21,7 +21,7 @@ export const fetchUserDataById: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const fetchUserData: RequestHandler = async (req, res, next) => {
+export const fetchUserData: RequestHandler = async (_req, res, next) => {
   try {
     const user = await getAllUser();
 
@@ -38,10 +38,10 @@ export const fetchUserData: RequestHandler = async (req, res, next) => {
 
 export const updateUserData: RequestHandler = async (req, res, next) => {
   try {
-    const userId = req.body.userId;
+    const docId = req.body.docId;
     const userData = req.body;
 
-    await updateUser(userId, userData);
+    await updateUser(docId, userData);
     res.json({ message: "User updated successfully" });
   } catch (error) {
     next(error);
